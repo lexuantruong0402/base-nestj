@@ -1,0 +1,12 @@
+version: '3'
+services:
+  base-db:
+    image: mysql:latest
+    container_name: base-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: basedb
+      MYSQL_USER: base
+      MYSQL_PASSWORD: password
