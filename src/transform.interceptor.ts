@@ -24,8 +24,6 @@ export class TransformInterceptor<T>
     next: CallHandler,
   ): Observable<Response<T>> {
     const now = Date.now();
-    const req = context.switchToHttp().getRequest();
-    Logger.log(`[${req.host}${req.url} ${req.method}]`);
 
     return next.handle().pipe(
       map((data) => ({
