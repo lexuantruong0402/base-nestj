@@ -8,7 +8,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './module/authentication/auth.module';
-import { User } from './module/user/entities/user.entity';
 import { UserModule } from './module/user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { CaslModule } from './module/casl/casl.module';
@@ -18,7 +17,6 @@ import { RequestMiddleware } from './logger.middleware';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const ormconfig = require('../ormconfig');
-const entities = [User];
 const modules = [UserModule, AuthModule, CaslModule];
 
 @Module({
@@ -26,7 +24,7 @@ const modules = [UserModule, AuthModule, CaslModule];
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       ...ormconfig,
-      entities: entities,
+      autoLoadEntities: true,
     }),
     ...modules,
   ],
